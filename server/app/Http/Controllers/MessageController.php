@@ -7,6 +7,26 @@ use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
+    // Retrieve a specific message
+    public function getMessage($id)
+    {
+        $message = Message::findOrFail($id);
+        return response()->json($message);
+    }
+
+    // Update a specific message
+    public function updateMessage(Request $request, $id)
+    {
+        $request->validate([
+            'message' => 'required|string',
+        ]);
+
+        $message = Message::findOrFail($id);
+        $message->update($request->all());
+
+        return response()->json($message);
+    }
+
     // Send a message
     public function sendMessage(Request $request)
     {

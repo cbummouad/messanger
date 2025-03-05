@@ -7,7 +7,43 @@ use Illuminate\Http\Request;
 
 class ConversationController extends Controller
 {
-    // Create a new conversation
+    // Update a conversation
+    public function updateConversation(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'string',
+            'user_ids' => 'array',
+            'user_ids.*' => 'exists:users,id',
+        ]);
+
+        $conversation = Conversation::findOrFail($id);
+        $conversation->update($request->all());
+
+        return response()->json($conversation);
+    }
+
+    // Retrieve a specific conversation
+    public function getConversation($id)
+    {
+        $conversation = Conversation::with('messages')->findOrFail($id);
+        return response()->json($conversation);
+    }
+
+    // Add a message to a conversation
+    public function addMessageToConversation(Request $request, $id)
+    {
+        $request->validate([
+            'message' => 'required|string',
+        ]);
+
+        $conversation = Conversation::findOrFail($id);
+        $conversation->messages()->create([
+            'content' => $request->message,
+            'user_id' => $request->user()->id,
+        ]);
+
+        return response()->json(['message' => 'Message added successfully'], 201);
+    }
     public function createConversation(Request $request)
     {
         $request->validate([
