@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -27,14 +28,31 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
-    {
-        $request->authenticate();
-
+    public function store(LoginRequest $request)
+{
+    // Attempt authentication with provided credentials
+    if (Auth::attempt($request->only('email', 'password'))) {
+        // Authentication successful
+        $user = Auth::user();
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // Generate a token
+        $token = $user->createToken('api')->plainTextToken;
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Login successful',
+            'data' => $user,
+            'token' => $token,
+        ]);
     }
+
+    return response()->json([
+        'success' => false,
+        'message' => 'Invalid credentials',
+    ], 401);
+}
+
 
     /**
      * Destroy an authenticated session.

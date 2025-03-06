@@ -6,6 +6,11 @@ use App\Http\Controllers\HomeControoler;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ConversationController;
 
+Route::get('/', function () {
+    return ['Laravel' => app()->version()];
+});
+
+
 Route::middleware(['auth','verified'])->group(function(){
     Route::get('/',[HomeControoler::class, 'home'])->name('dashboard');
 
@@ -13,10 +18,15 @@ Route::middleware(['auth','verified'])->group(function(){
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::apiResource('profile', ProfileController::class);
+
+    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+
 
 Route::post('/messages/send', [MessageController::class, 'sendMessage']);
 Route::get('/messages', [MessageController::class, 'getMessages']);

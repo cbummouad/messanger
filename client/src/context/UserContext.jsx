@@ -13,14 +13,14 @@ import { UserApi } from "../service/UserApi";
     setToken :()=>{}
 })
 
-export default function StudentContext({children}){
+export default function UserContext({children}){
     const [user,setUser] = useState()
    
 
     const [authenticated , _setAuthenticated] = useState('true'=== window.localStorage.getItem('AUTHENTIFICARED'))
 
     const login = async (values)=> {
-
+        console.log(values);
          await UserApi.getCsrfToken()
          return await UserApi.login(values)
     }

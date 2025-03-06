@@ -7,6 +7,8 @@ export const UserApi = {
     },
     login : async (values)=>{
         const {data} = await AxiosClient.post("/login", values )
+        console.log(values);
+        
     return data
     },
     logout : async ()=>{
