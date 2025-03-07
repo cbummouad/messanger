@@ -35,13 +35,13 @@ body {
 .background::before {
   top: -40vmin;
   left: -50vmin;
-  background: #65c8ff;
+  background: #A0E4E1;
 }
 
 .background::after {
   right: -50vmin;
   bottom: -55vmin;
-  background: #2357ad;
+  background: #BD2F50;
   animation-direction: alternate-reverse;
 }
 
@@ -174,7 +174,7 @@ body {
 
 .card a {
   font-weight: 500;
-  color: #216ce7;
+  color: #008080;
 }
 
 .error {
