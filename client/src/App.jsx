@@ -1,9 +1,8 @@
-
+import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Import Routes and Route
 import './App.css';
 import Login from './Pages/Auth/Login'; // Your Login Component
 import UserContext from './context/UserContext';
-
 function App() {
   return (
     <UserContext>
