@@ -4,7 +4,7 @@ import './App.css';
 import Login from './Pages/Auth/Login'; // Your Login Component
 import UserContext from './context/UserContext';
 import Register from './Pages/Auth/Register'; // your register Component
-
+// import ForgotPassword from './Pages/Auth/ForgotPassword';
 function App() {
   return (
     <UserContext>
@@ -13,6 +13,7 @@ function App() {
       <Routes>
         <Route path='/login' index element={<Login />} /> {/* Use route path for Login */}
         <Route path='/register' element={<Register />} /> {/* Use route path for Register */}
+        {/* <Route path='/ForgotPassword' element={<ForgotPassword />} /> Use route path for Register */}
       </Routes>
     </BrowserRouter>
     </UserContext>

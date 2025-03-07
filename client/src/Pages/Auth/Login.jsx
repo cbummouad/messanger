@@ -5,6 +5,7 @@ import { UseUserContext } from "../../context/UserContext";
 import { UserApi } from "../../service/UserApi";
 import logo from '../../assets/Facebook_Messenger_logo_2018.svg.png';
 import '../styles/login.css';
+import { Link } from "react-router-dom";
 const formSchema = z.object({
   email: z.string().email().max(50).min(2),
   password: z.string().min(8).max(30),
@@ -79,7 +80,7 @@ export default function Login() {
           </form>
           <a>Forgot password?</a>
           <footer>
-            Need an account? Sign up <a href="#">here</a>
+            Need an account? Sign up <Link >here</Link>
           </footer>
         </div>
       </div>
