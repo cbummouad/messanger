@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Import Route
 import './App.css';
 import Login from './Pages/Auth/Login'; // Your Login Component
 import UserContext from './context/UserContext';
+import Register from './Pages/Auth/Register';
 
 function App() {
   return (
@@ -10,7 +11,9 @@ function App() {
     <BrowserRouter>
       {/* Define Routes for routing */}
       <Routes>
-        <Route index element={<Login />} /> {/* Use route path for Login */}
+        <Route index element={<Login />} /> 
+        <Route path='/register' element={<Register />} /> {/* Use route path for Login */}
+
       </Routes>
     </BrowserRouter>
     </UserContext>

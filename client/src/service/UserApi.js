@@ -18,7 +18,10 @@ export const UserApi = {
     getUser: async () => {
         return await AxiosClient.get('/api/me')
       },
-
+    createUser: async (values) => {
+        const {data} = await AxiosClient.post("/register", values )
+        console.log(values);
+      },
       
 
 

@@ -2,7 +2,7 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UseUserContext } from "../../context/UserContext";
-import { UserApi } from "../../service/UserApi";
+import { Link } from "react-router-dom";
 
 const formSchema = z.object({
   email: z.string().email().max(50).min(2),
@@ -66,6 +66,8 @@ export default function Login() {
         />
         {errors.password && <p className="text-red-500">{errors.password.message}</p>}
       </div>
+
+      <Link to={'/register'} > Create acount</Link>
 
       <div className="flex justify-between items-center">
         <button
