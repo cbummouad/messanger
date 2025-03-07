@@ -106,8 +106,12 @@ body {
   gap: 12px;
 }
 #form-title{
-  font-size: 36px;
-  margin-bottom: 30px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; /* Bold weight */
+  font-size: 32px; /* Matches your existing size */
+  color: #216ce7; /* Deep blue as recommended */
+  letter-spacing: 1px; /* Slight spacing for elegance */
+  margin: 0 0 4px; /* Matches your existing margin */
 }
 .form :is(input, button) {
   width: 100%;
@@ -131,7 +135,10 @@ body {
 .textbox > input::placeholder {
   color: var(--color-muted);
 }
-
+.textbox > input:focus {
+  outline: none;            /* Remove default focus outline */
+  box-shadow: 0 0 0 2px #7B68EE; /* Add a blue glow on focus */
+}
 .textbox > span {
   position: absolute;
   top: 50%;
